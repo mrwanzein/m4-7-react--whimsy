@@ -4,6 +4,7 @@ import styled from "styled-components";
 import LikeButton from "../LikeButton";
 import Action from "./Action";
 import TweetActionIcon from "./TweetActionIcon";
+import PoppingCircle from '../LikeButton/PoppingCircle';
 
 import {TweetContext} from "../TweetContext";
 
@@ -30,6 +31,7 @@ const ActionBar = () => {
         handleToggleLike(isLiked, setIsLiked, numOfLikes, setNumOfLikes);
       }}>
         <LikeButton isLiked={isLiked} />
+        {isLiked && <PoppingCircle size={40} color="#E790F7" />}
       </Action>
       <Action color="rgb(27, 149, 224)" size={40}>
         <TweetActionIcon kind="share" />
