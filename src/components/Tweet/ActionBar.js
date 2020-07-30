@@ -8,20 +8,27 @@ import TweetActionIcon from "./TweetActionIcon";
 import {TweetContext} from "../TweetContext";
 
 const ActionBar = () => {
-  const { isLiked, isRetweeted } = React.useContext(TweetContext);
+  const { 
+    isLiked, isRetweeted, numOfLikes, setNumOfLikes, handleToggleLike, setIsLiked,
+    numOfRetweets, setNumOfRetweets, setIsRetweeted, handleToggleRetweet
+  } = React.useContext(TweetContext);
 
   return (
     <Wrapper>
       <Action color="rgb(27, 149, 224)" size={40}>
         <TweetActionIcon kind="reply" />
       </Action>
-      <Action color="rgb(23, 191, 99)" size={40}>
+      <Action color="rgb(23, 191, 99)" size={40} onClick={() => {
+        handleToggleRetweet(isRetweeted, setIsRetweeted, numOfRetweets, setNumOfRetweets);
+      }}>
         <TweetActionIcon
           kind="retweet"
           color={isRetweeted ? "rgb(23, 191, 99)" : undefined}
         />
       </Action>
-      <Action color="rgb(224, 36, 94)" size={40}>
+      <Action color="rgb(224, 36, 94)" size={40} onClick={() => {
+        handleToggleLike(isLiked, setIsLiked, numOfLikes, setNumOfLikes);
+      }}>
         <LikeButton isLiked={isLiked} />
       </Action>
       <Action color="rgb(27, 149, 224)" size={40}>

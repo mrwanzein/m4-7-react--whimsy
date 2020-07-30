@@ -5,6 +5,26 @@ import avatar from "../assets/carmen-sandiego.png";
 
 export const TweetContext = React.createContext(null);
 
+const handleToggleLike = (isLiked, isLikedSetter, likeNum, likeNumSetter) => {
+    if(isLiked) {
+        isLikedSetter(!isLiked);
+        likeNumSetter(likeNum - 1);
+    } else {
+        isLikedSetter(!isLiked);
+        likeNumSetter(likeNum + 1);
+    }
+}
+
+const handleToggleRetweet = (isRetweeted, isRetweetedSetter, retweetNum, retweetNumSetter) => {
+    if(isRetweeted) {
+        isRetweetedSetter(!isRetweeted);
+        retweetNumSetter(retweetNum - 1);
+    } else {
+        isRetweetedSetter(!isRetweeted);
+        retweetNumSetter(retweetNum + 1);
+    }
+}
+
 export const TweetProvider = ({children}) => {
     const date = moment().format('LT - MMM Do, YYYY');
 
@@ -24,7 +44,13 @@ export const TweetProvider = ({children}) => {
         numOfLikes,
         numOfRetweets,
         isLiked,
-        isRetweeted
+        isRetweeted,
+        setNumOfLikes,
+        setNumOfRetweets,
+        setIsLiked,
+        setIsRetweeted,
+        handleToggleLike,
+        handleToggleRetweet
     }}>
         {children}
     </TweetContext.Provider>;
